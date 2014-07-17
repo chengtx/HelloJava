@@ -1,3 +1,3 @@
 core-java
 =========
-This report is to study Java 1.8 new feature.
+This repository is to study Java 1.8 new feature.
