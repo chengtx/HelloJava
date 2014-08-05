@@ -17,5 +17,6 @@ public class App {
 		logger.debug("logback: Hello world!");
 		logger.info("logback: Hello world!");
 		logger.warn("logback: Hello world!");
+		logger.error("logback: Hello world!");
 	}
 }
