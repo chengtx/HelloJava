@@ -24,22 +24,16 @@ def default_maxFileSize = "10MB"
 scan("3 seconds")
 //statusListener(OnConsoleStatusListener)
 appender("STDOUT", ConsoleAppender) {
-  encoder(PatternLayoutEncoder) {
-    pattern = default_pattern
-  }
+	encoder(PatternLayoutEncoder) { pattern = default_pattern }
 }
 appender("FILE", RollingFileAppender) {
-  file = "logFile.log"
-  rollingPolicy(FixedWindowRollingPolicy) {
-    fileNamePattern = "logFile.%i.log.zip"
-    minIndex = 1
-    maxIndex = 10
-  }
-  triggeringPolicy(SizeBasedTriggeringPolicy) {
-    maxFileSize = default_maxFileSize
-  }
-  encoder(PatternLayoutEncoder) {
-    pattern = default_pattern
-  }
+	file = "logFile.log"
+	rollingPolicy(FixedWindowRollingPolicy) {
+		fileNamePattern = "logFile.%i.log.zip"
+		minIndex = 1
+		maxIndex = 10
+	}
+	triggeringPolicy(SizeBasedTriggeringPolicy) { maxFileSize = default_maxFileSize }
+	encoder(PatternLayoutEncoder) { pattern = default_pattern }
 }
 root(WARN, ["STDOUT", "FILE"])
