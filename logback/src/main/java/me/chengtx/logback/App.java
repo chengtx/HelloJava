@@ -12,7 +12,6 @@ public class App {
 	private static final Logger logger = LoggerFactory.getLogger(App.class);
 	
 	public static void main(String[] args) {
-		System.out.println("Hello World!");
 		logger.trace("logback: Hello world!");
 		logger.debug("logback: Hello world!");
 		logger.info("logback: Hello world!");
