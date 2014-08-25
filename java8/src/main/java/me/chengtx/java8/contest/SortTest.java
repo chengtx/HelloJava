@@ -21,7 +21,7 @@ public class SortTest {
 	// private static final long UPPER = 10000000000L;
 	private static final Random rnd = new Random();
 
-	// @Test
+	@Test
 	public void initInput() {
 
 		try (BufferedWriter bw = Files.newBufferedWriter(input_path);) {

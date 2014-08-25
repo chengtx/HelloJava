@@ -24,6 +24,7 @@ public class Sort {
 		output_path = Paths.get(input);
 	}
 
+	@SuppressWarnings("unused")
 	private static String line1;
 	private static String line2;
 	// container to hold all element and sort
@@ -55,8 +56,6 @@ public class Sort {
 
 	public static void postSort() {
 		
-		
-		
 		try (BufferedWriter bw = Files.newBufferedWriter(output_path);) {
 			
 			String o1 = String.valueOf(sorted.size());
@@ -84,8 +83,8 @@ public class Sort {
 	public static void sort() {
 
 		// use array native function to parse token
-		length = Integer.parseInt(line1);
 		toSort = line2.split(" ");
+		length = toSort.length;
 
 		// insert into TreeSet
 		for (int i = 0; i < length; i++) {
