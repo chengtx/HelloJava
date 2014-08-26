@@ -40,6 +40,14 @@ public class SortTest {
 
 	@Test
 	public void test() {
+
+		/*
+		 * Object lock = new Object();
+		 * 
+		 * synchronized(lock){ try { lock.wait(); } catch (InterruptedException
+		 * e) { e.printStackTrace(); } }
+		 */
+
 		Sort.start();
 	}
 

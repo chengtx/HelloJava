@@ -107,14 +107,14 @@ public class Sort {
 
 		System.out.println("Start!");
 		long start = System.currentTimeMillis();
-
 		sort();
-		
+		long end1 = System.currentTimeMillis();
 		postSort();
-		
-		long end = System.currentTimeMillis();
-		long elapse = end - start;
-		System.out.println("Finished! " + elapse);
+		long end2 = System.currentTimeMillis();
+		long elapse1 = end1 - start;
+		long elapse2 = end2 - start;
+		System.out.println("Finished! " + elapse1);
+		System.out.println("Finished to file! " + elapse2);
 	}
 
 }
