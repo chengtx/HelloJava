@@ -21,17 +21,25 @@ public class SortTest {
 	// private static final long UPPER = 10000000000L;
 	private static final Random rnd = new Random();
 
-	@Test
+//	 @Test
 	public void initInput() {
+
+		int count = 0;
 
 		try (BufferedWriter bw = Files.newBufferedWriter(input_path);) {
 			bw.write(String.valueOf(NUMBER));
 			bw.newLine();
-
-			for (int i = 0; i < NUMBER; i++, bw.write(" ")) {
-				bw.write(String.valueOf(rnd.nextLong()));
+			for (;;) {
+				int raw = rnd.nextInt();
+				if (raw >= 0 && raw <= 10000000000L) {
+					count++;
+					bw.write(String.valueOf(raw));
+					bw.write(" ");
+					if (count >= 500000) {
+						break;
+					}
+				}
 			}
-
 		} catch (IOException ex) {
 			ex.printStackTrace();
 			return;

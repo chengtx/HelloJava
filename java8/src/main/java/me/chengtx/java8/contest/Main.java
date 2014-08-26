@@ -49,7 +49,7 @@ public class Main {
 		for (;;) {
 			sb.append(it.next());
 			if (it.hasNext()) {
-				sb.append(" ");
+				sb.append(' ');
 			} else {
 				break;
 			}
