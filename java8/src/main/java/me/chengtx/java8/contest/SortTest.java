@@ -21,7 +21,7 @@ public class SortTest {
 	// private static final long UPPER = 10000000000L;
 	private static final Random rnd = new Random();
 
-//	 @Test
+	// @Test
 	public void initInput() {
 
 		int count = 0;
@@ -35,7 +35,7 @@ public class SortTest {
 					count++;
 					bw.write(String.valueOf(raw));
 					bw.write(" ");
-					if (count >= 500000) {
+					if (count >= NUMBER) {
 						break;
 					}
 				}
@@ -48,15 +48,15 @@ public class SortTest {
 
 	@Test
 	public void test() {
-
-		/*
-		 * Object lock = new Object();
-		 * 
-		 * synchronized(lock){ try { lock.wait(); } catch (InterruptedException
-		 * e) { e.printStackTrace(); } }
-		 */
-
 		Sort.start();
+		// Object lock = new Object();
+		// synchronized (lock) {
+		// try {
+		// lock.wait();
+		// } catch (InterruptedException e) {
+		// e.printStackTrace();
+		// }
+		// }
 	}
 
 }

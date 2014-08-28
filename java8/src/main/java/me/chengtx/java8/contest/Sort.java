@@ -15,6 +15,8 @@ import java.util.TreeSet;
  */
 public class Sort {
 
+	private static long start;
+
 	// constant for file path
 	private static Path input_path = Paths.get("input.txt");
 	private static Path output_path = Paths.get("output.txt");
@@ -101,73 +103,79 @@ public class Sort {
 		// use array native function to parse token
 		toSort = line2.split(" ");
 		length = toSort.length;
+		System.out.println(length);
 
-				// totoal size is 10GB
-				// final long TOTAL = 10000000L;
-				// chunk size is 64MB
-				final int CHUNK = 64000000;
-				// loop is 16
-				final int LOOP = 16;
-				// help array
-				final int[] help = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048,	4096, 8192, 16384, 32768 };
+		// chunk size is 153 MB
+		// then chunk * loop is about 10 GB ( > 9,999,999,999)
+		final int CHUNK = 153 * 1024 * 1024;
+		// loop is 16
+		final int LOOP = 63;
+		// help array
+		final long[] help = new long[LOOP];
+		help[0] = 1L;
+		for (int i = 1; i < LOOP; i++) {
+			help[i] = help[i - 1] * 2;
+		}
+		System.out.print("1: ");
+		System.out.println(System.currentTimeMillis() - start);
 
-				StringBuilder[] sbs = new StringBuilder[LOOP];
-				for (int i = 0; i < LOOP; i++) {
-					sbs[i] = new StringBuilder();
+		StringBuilder[] sbs = new StringBuilder[LOOP];
+		for (int i = 0; i < LOOP; i++) {
+			sbs[i] = new StringBuilder();
+		}
+		
+		System.out.print("1.5: ");
+		System.out.println(System.currentTimeMillis() - start);
+
+		long[] array = new long[CHUNK];
+		int c1 = 0;
+		System.out.print("2: ");
+		System.out.println(System.currentTimeMillis() - start);
+
+		for (int i = 0; i < length; i++) {
+			String temp = toSort[i];
+			try {
+				long e = Long.parseLong(temp);
+				int exp = (int) (e / CHUNK);
+				int pos = (int) (e % CHUNK);
+				long value = help[exp];
+				long var = array[pos];
+				if ((var >> exp) % 2 == 0) {
+					// do not contain this value, add value into array
+					array[pos] += value;
+					c1++;
 				}
+			} catch (Exception ex) {
+			}
+		}
 
-				int[] array = new int[CHUNK];
+		System.out.print("3: ");
+		System.out.println(System.currentTimeMillis() - start);
 
-				int count = 0;
-
-				for (int i = 0; i < length; i++) {
-					String temp = toSort[i];
-					try {
-						long e = Long.parseLong(temp);
-						int exp = (int) e / CHUNK;
-						int pos = (int) e % CHUNK;
-						int value = (int) help[exp];
-
-						if (array[pos] == 0) {
-							array[pos] = value;
-						} else {
-							int var = array[pos];
-							for (int k = LOOP; k > 0; k++) {
-								if (var >= help[k - 1]) {
-									if (value == help[k - 1]) {
-										// contain the value
-										array[pos] += value;
-									}
-									var -= help[k - 1];
-								} else {
-									// do not contain this value
-									break;
-								}
-							}
-						}
-					} catch (Exception ex) {
-					}
+		for (int i = 0; i < CHUNK; i++) {
+			if (array[i] == 0) {
+				continue;
+			}
+			for (int j = 0; j < LOOP; j++) {
+				if (array[i] % 2 == 1) {
+					sbs[j].append((long) i + (long) j * CHUNK);
+					sbs[j].append(' ');
 				}
-
-				for (int i = 0; i < CHUNK; i++) {
-					int temp = array[i];
-					for (int j = LOOP; j > 0; j--) {
-						if (temp >= help[j - 1]) {
-							// count ++;
-							count++;
-							sbs[j - 1].append(i + (j - 1) * CHUNK);
-							sbs[j - 1].append(' ');
-							temp -= help[j - 1];
-						}
-					}
+				array[i] = array[i] >> 1;
+				if (array[i] == 0) {
+					break;
 				}
+			}
+		}
 
-				System.out.println(count);
-				StringBuilder result = new StringBuilder();
-				for (int i = 0; i < LOOP; i++) {
-					result.append(sbs[i]);
-				}
-//				System.out.println(result.toString());
+		System.out.print("4: ");
+		System.out.println(System.currentTimeMillis() - start);
+		System.out.println(c1);
+		// StringBuilder result = new StringBuilder();
+		for (int i = 0; i < LOOP; i++) {
+			// result.append(sbs[i]);
+		}
+		// System.out.println(result.toString());
 
 	}
 
@@ -177,9 +185,8 @@ public class Sort {
 		// set to reduce the duplication and provide self sort
 		// export result to file
 		preSort();
-
 		System.out.println("Start!");
-		long start = System.currentTimeMillis();
+		start = System.currentTimeMillis();
 		sort2();
 		long end1 = System.currentTimeMillis();
 		postSort();
