@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.BitSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -119,11 +120,11 @@ public class Sort {
 		System.out.print("1: ");
 		System.out.println(System.currentTimeMillis() - start);
 
-		StringBuilder[] sbs = new StringBuilder[LOOP];
+		StringBuffer[] sbs = new StringBuffer[LOOP];
 		for (int i = 0; i < LOOP; i++) {
-			sbs[i] = new StringBuilder();
+			sbs[i] = new StringBuffer();
 		}
-		
+
 		System.out.print("1.5: ");
 		System.out.println(System.currentTimeMillis() - start);
 
@@ -179,6 +180,52 @@ public class Sort {
 
 	}
 
+	public static void sort3() {
+		// use array native function to parse token
+		toSort = line2.split(" ");
+		length = toSort.length;
+		System.out.println(length);
+
+		int c1 = 0;
+		StringBuffer sb = new StringBuffer();
+		final int N = 1000000000;
+		final int LOOP = 10;
+		BitSet[] bs = new BitSet[10];
+
+		for (int i = 0; i < LOOP; i++) {
+			bs[i] = new BitSet();
+
+		}
+
+		for (int i = 0; i < length; i++) {
+			String temp = toSort[i];
+			try {
+				long e = Long.parseLong(temp);
+				int exp = (int) (e / N);
+				int pos = (int) (e % N);
+				bs[exp].set(pos);
+			} catch (Exception ex) {
+			}
+		}
+
+		for (int i = 0; i < LOOP; i++) {
+			for (int j = bs[i].nextSetBit(0); j >= 0; j = bs[i]
+					.nextSetBit(j + 1)) {
+				c1++;
+				sb.append(' ');
+				if (i > 0) {
+					sb.append(i);
+				}
+				sb.append(j);
+			}
+		}
+		// pause();
+		System.out.println(c1);
+		// System.out.println(sb.toString().substring(1));
+		System.out.println(System.currentTimeMillis() - start);
+
+	}
+
 	public static void start() {
 
 		// O(NlgN)+O(N)
@@ -187,7 +234,7 @@ public class Sort {
 		preSort();
 		System.out.println("Start!");
 		start = System.currentTimeMillis();
-		sort2();
+		sort3();
 		long end1 = System.currentTimeMillis();
 		postSort();
 		long end2 = System.currentTimeMillis();
@@ -195,6 +242,17 @@ public class Sort {
 		long elapse2 = end2 - start;
 		System.out.println("Finished! " + elapse1);
 		System.out.println("Finished to file! " + elapse2);
+	}
+
+	public static void pause() {
+		Object lock = new Object();
+		synchronized (lock) {
+			try {
+				lock.wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
