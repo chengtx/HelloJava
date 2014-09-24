@@ -22,6 +22,13 @@ public class Main3 {
 
 		// use array native function to parse token
 		int length = Integer.parseInt(line1);
+
+		if (length == 0) {
+			System.out.println("0");
+			System.out.println("");
+			return;
+		}
+
 		String[] toSort = line2.split(" ");
 
 		int c1 = 0;
