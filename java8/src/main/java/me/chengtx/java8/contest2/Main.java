@@ -23,31 +23,38 @@ public class Main {
 		// String line1 = stdin.readLine();
 		// String line2 = stdin.readLine();
 
-		String line1 = "8 1 2 3 4 5 7 7 7";
-		String line2 = "9 2 3 4 5 6 2 3 4 5";
+		String line1 = "2 1 2";
+		String line2 = "3 4 5 9";
 
-		int result = -1;
+		// the longest length of common substring
+		int longest = 0;
 
 		String[] str1 = line1.split(" ");
 		String[] str2 = line2.split(" ");
 
-		int len1 = Integer.parseInt(str1[0]);
-		int len2 = Integer.parseInt(str2[0]);
+		int size1 = Integer.parseInt(str1[0]) - 1;
+		int size2 = Integer.parseInt(str2[0]) - 1;
 
-		if (len1 < 2 || len2 < 2) {
-			result = 1;
-			System.out.println(result);
+		if (size1 == -1 || size2 == -1) {
+			longest = 0;
+			System.out.println(longest);
+			return;
+		}
+		
+		if (size1 == 0 || size2 == 0) {
+			longest = 1;
+			System.out.println(longest);
 			return;
 		}
 
-		int[] o1 = new int[len1 - 1];
-		int[] o2 = new int[len2 - 1];
+		int[] o1 = new int[size1];
+		int[] o2 = new int[size2];
 
-		for (int i = 0; i < len1 - 1; i++) {
+		for (int i = 0; i < size1; i++) {
 			o1[i] = Integer.parseInt(str1[i + 2])
 					- Integer.parseInt(str1[i + 1]);
 		}
-		for (int i = 0; i < len2 - 1; i++) {
+		for (int i = 0; i < size2; i++) {
 			o2[i] = Integer.parseInt(str2[i + 2])
 					- Integer.parseInt(str2[i + 1]);
 		}
@@ -56,25 +63,9 @@ public class Main {
 
 		// using LCS algorithm to caculate the longest common substring between
 		// o1 and o2
-		result = longestCommonSubstring_n2_1(o1, o2) + 1;
-
-		System.out.println(result);
-		System.out.println("Time: " + (System.currentTimeMillis() - start)
-				+ " Compare: " + comparisons);
-	}
-
-	private static int longestCommonSubstring_n2_1(int[] o1, int[] o2) {
-		int size1 = o1.length;
-		int size2 = o2.length;
-		if (size1 == 0 || size2 == 0)
-			return 0;
-
 		// the start position of substring in original string
 		// int start1 = -1;
 		// int start2 = -1;
-
-		// the longest length of common substring
-		int longest = 0;
 
 		int indices[] = { 0, 0 };
 		int sizes[] = { size1, size2 };
@@ -84,7 +75,6 @@ public class Main {
 			indices[0] = 0;
 			indices[1] = 0;
 
-			// i is reference to the value in array
 			int value = indices[index];
 			int size = sizes[index];
 
@@ -119,6 +109,9 @@ public class Main {
 			}
 		}
 
-		return longest;
+		System.out.println(longest + 1);
+		System.out.println("Time: " + (System.currentTimeMillis() - start)
+				+ " Compare: " + comparisons);
 	}
+
 }
