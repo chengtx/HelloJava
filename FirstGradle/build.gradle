@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+
+title = 'Gradle Quickstart'
+version = '1.0'
+jar {
+	manifest {
+		attributes 'Implementation-Title': title, 'Implementation-Version': version
+	}
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+	compile 'commons-collections:commons-collections:3.2'
+	compile 'com.google.guava:guava:17.0'
+	testCompile 'junit:junit:4.11'
+}
+
+test { systemProperties 'property': 'value' }
