@@ -3,8 +3,9 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 
-title = 'Gradle Quickstart'
-version = '1.0'
+def title = 'Gradle Quickstart'
+def version = '1.0'
+
 jar {
 	manifest {
 		attributes 'Implementation-Title': title, 'Implementation-Version': version
@@ -16,6 +17,7 @@ repositories { mavenCentral() }
 dependencies {
 	compile 'commons-collections:commons-collections:3.2'
 	compile 'com.google.guava:guava:17.0'
+	compile 'joda-time:joda-time:2.5'
 	testCompile 'junit:junit:4.11'
 }
 
