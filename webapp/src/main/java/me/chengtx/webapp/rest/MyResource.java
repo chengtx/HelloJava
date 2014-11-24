@@ -29,7 +29,7 @@ public class MyResource {
 		UserDAO userDao = new UserDAO();
         System.out.println();
 		return userDao.getAllUsers();
-		// return "Hello, CloudFoundry V2!";
+//
 	}
 
 	@GET
@@ -38,5 +38,13 @@ public class MyResource {
 	public Map<String, String> getSysProp() {
 		return System.getenv();
 	}
+
+    @GET
+    @Path("/hello")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getString() {
+        return "Hello, CloudFoundry V2!";
+    }
+
 
 }
