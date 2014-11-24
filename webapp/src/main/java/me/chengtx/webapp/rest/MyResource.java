@@ -27,6 +27,7 @@ public class MyResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> getAllUser() {
 		UserDAO userDao = new UserDAO();
+        System.out.println();
 		return userDao.getAllUsers();
 		// return "Hello, CloudFoundry V2!";
 	}
