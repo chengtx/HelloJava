@@ -25,6 +25,7 @@ public class MyResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAllUser() {
+        System.out.println("");
         UserDAO userDao = new UserDAO();
         return userDao.getAllUsers();
     }
