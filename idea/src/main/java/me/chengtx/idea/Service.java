@@ -8,4 +8,8 @@ public class Service {
     public String welcome(String message) {
         return "Hello, " + message;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
