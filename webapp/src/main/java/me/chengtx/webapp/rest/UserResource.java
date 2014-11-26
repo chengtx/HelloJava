@@ -20,6 +20,7 @@ public class UserResource {
 
     @Autowired
     private UserStore userStore;
+
     public void setUserStore(UserStore userStore) {
         this.userStore = userStore;
     }
@@ -35,7 +36,7 @@ public class UserResource {
     public List<User> getAllUser() {
 
         List<User> userList = userStore.getAllUsers();
-        userList.forEach(s->{
+        userList.forEach(s -> {
             System.out.println(s.getUid());
             System.out.println(s.getName());
             System.out.println(s.getEmail());
