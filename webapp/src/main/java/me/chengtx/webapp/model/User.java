@@ -5,6 +5,7 @@ package me.chengtx.webapp.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * @author chengt4
@@ -13,7 +14,7 @@ import javax.persistence.Entity;
 @Entity
 public class User {
 
-	@Basic
+	@Id
 	private String uid;
 	@Basic
 	private String name;

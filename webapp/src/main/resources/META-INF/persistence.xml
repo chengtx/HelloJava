@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
-	<persistence-unit name="appDB" transaction-type="RESOURCE_LOCAL">
-		<provider>
-			org.apache.openjpa.persistence.PersistenceProviderImpl
-		</provider>
-		<class>me.chengtx.webapp.model.User</class>
-		<properties>
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.32.127.164:3306/webappdb" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="c1oudc0w" />
-			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
-			<property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
-		</properties>
-	</persistence-unit>
+             version="2.0">
+    <persistence-unit name="mysql" transaction-type="RESOURCE_LOCAL">
+        <provider>
+            org.apache.openjpa.persistence.PersistenceProviderImpl
+        </provider>
+        <class>me.chengtx.webapp.model.User</class>
+        <properties>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
+            <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=WARN, Tool=WARN, SQL=WARN"/>
+        </properties>
+    </persistence-unit>
 </persistence>
