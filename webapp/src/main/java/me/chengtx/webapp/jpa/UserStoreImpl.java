@@ -26,9 +26,8 @@ public class UserStoreImpl extends AbstractStore implements UserStore {
         List<?> userList = q.getResultList();
 
         List<User> result = new ArrayList<>();
-        for (Object o : userList) {
-            result.add((User) o);
-        }
+        userList.forEach(s -> result.add((User) s));
+
         return result;
     }
 
