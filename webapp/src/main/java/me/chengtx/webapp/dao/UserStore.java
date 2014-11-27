@@ -11,4 +11,6 @@ public interface UserStore {
 
     public List<User> getAllUsers();
     public boolean createUser();
+    public boolean updateUser(User user);
+    public boolean deleteUser(String uid);
 }

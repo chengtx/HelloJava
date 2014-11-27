@@ -42,4 +42,18 @@ public class UserStoreImpl extends AbstractStore implements UserStore {
         return true;
     }
 
+    @Override
+    @Transactional
+    public boolean updateUser(User user) {
+        entityManager.merge(user);
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteUser(String uid) {
+        User user = entityManager.find(User.class, uid);
+        entityManager.remove(user);
+        return true;
+    }
 }
