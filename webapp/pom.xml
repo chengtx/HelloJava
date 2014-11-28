@@ -15,6 +15,12 @@
         <spring.version>4.1.2.RELEASE</spring.version>
 	</properties>
 	<dependencies>
+        <!-- JSON -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20141113</version>
+        </dependency>
 
         <!-- Spring -->
         <dependency>
