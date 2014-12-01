@@ -36,11 +36,13 @@ public class UserResource {
     public List<User> getAllUser() {
 
         List<User> userList = userStore.getAllUsers();
-        userList.forEach(s -> {
-            System.out.println(s.getUid());
-            System.out.println(s.getName());
-            System.out.println(s.getEmail());
-        });
+        /**
+         userList.forEach(s -> {
+         System.out.println(s.getUid());
+         System.out.println(s.getName());
+         System.out.println(s.getEmail());
+         });
+         */
 
         return userList;
     }
