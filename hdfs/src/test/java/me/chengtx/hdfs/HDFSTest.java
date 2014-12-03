@@ -24,13 +24,12 @@ import static org.junit.Assert.fail;
 public class HDFSTest {
 
     private static final String NAME_NODE = "hdfs://10.32.127.132:8020";
-    private static Configuration conf;
     private static DistributedFileSystem hdfs;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         System.setProperty("HADOOP_USER_NAME", "root");
-        conf = new Configuration();
+        Configuration conf = new Configuration();
         conf.set("fs.defaultFS", NAME_NODE);
         try {
             hdfs = new DistributedFileSystem();
@@ -127,7 +126,7 @@ public class HDFSTest {
         System.out.println();
         try (
                 FSDataOutputStream os = hdfs.create(new Path("/file03"), true);
-                Writer out = new OutputStreamWriter(os, "utf-8");//
+                Writer out = new OutputStreamWriter(os, "utf-8")
         ) {
             System.out.println("Start to create and write: " + new Path("/file03").getName() + " to hdfs");
             out.write("Hello, HDFS!");
@@ -149,7 +148,7 @@ public class HDFSTest {
                 InputStreamReader isr = new InputStreamReader(is, "utf-8");
                 BufferedReader br = new BufferedReader(isr);
                 FSDataOutputStream os = hdfs.create(new Path("/file01"), true);
-                Writer out = new OutputStreamWriter(os, "utf-8");
+                Writer out = new OutputStreamWriter(os, "utf-8")
         ) {
             String str;
             while ((str = br.readLine()) != null) {
@@ -198,7 +197,7 @@ public class HDFSTest {
         try (
                 FSDataInputStream dis = hdfs.open(new Path("/file03"));
                 InputStreamReader isr = new InputStreamReader(dis, "utf-8");
-                BufferedReader br = new BufferedReader(isr);
+                BufferedReader br = new BufferedReader(isr)
         ) {
             String str;
             while ((str = br.readLine()) != null) {
