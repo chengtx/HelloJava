@@ -28,9 +28,10 @@ public class HDFSTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        System.setProperty("HADOOP_USER_NAME", "root");
+        System.setProperty("HADOOP_USER_NAME", "chengtx");
         Configuration conf = new Configuration();
         conf.set("fs.defaultFS", NAME_NODE);
+        conf.set("hadoop.home.dir", "/user/chengtx");
         try {
             hdfs = new DistributedFileSystem();
             Instant start = Instant.now();
@@ -91,9 +92,9 @@ public class HDFSTest {
         try {
             Path homePath = hdfs.getHomeDirectory();
             System.out.println("main path:" + homePath.toString());
-            assertEquals(NAME_NODE + "/user/root", homePath.toString());
+            assertEquals(NAME_NODE + "/user/chengtx", homePath.toString());
 
-            Path f = new Path("/user/root");
+            Path f = new Path("/user/chengtx");
             boolean exist = hdfs.exists(f);
             System.out.println("Whether exist of this file:" + exist);
 
@@ -113,8 +114,8 @@ public class HDFSTest {
                 }
             }
         } catch (Exception e) {
-            fail();
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -131,8 +132,8 @@ public class HDFSTest {
             System.out.println("Start to create and write: " + new Path("/file03").getName() + " to hdfs");
             out.write("Hello, HDFS!");
         } catch (Exception e) {
-            fail();
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -156,8 +157,8 @@ public class HDFSTest {
             }
             System.out.println("Write content of file " + new File("C:\\IFRToolLog.txt").getName() + " to hdfs file " + new Path("/file01").getName() + " success");
         } catch (Exception e) {
-            fail();
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -167,7 +168,7 @@ public class HDFSTest {
     @Test
     public void getLocation() {
         try {
-            Path f = new Path("/file01");
+            Path f = new Path("/file02");
             FileStatus fileStatus = hdfs.getFileStatus(f);
 
             BlockLocation[] blkLocations = hdfs.getFileBlockLocations(fileStatus, 0, fileStatus.getLen());
@@ -183,8 +184,8 @@ public class HDFSTest {
             Date d = new Date(modifyTime);
             System.out.println(d);
         } catch (Exception e) {
-            fail();
             e.printStackTrace();
+            fail();
         }
     }
 
@@ -195,7 +196,7 @@ public class HDFSTest {
     public void readFileFromHDFS() {
         System.out.println();
         try (
-                FSDataInputStream dis = hdfs.open(new Path("/file03"));
+                FSDataInputStream dis = hdfs.open(new Path("/file02"));
                 InputStreamReader isr = new InputStreamReader(dis, "utf-8");
                 BufferedReader br = new BufferedReader(isr)
         ) {
@@ -204,8 +205,42 @@ public class HDFSTest {
                 System.out.println(str);
             }
         } catch (Exception e) {
-            fail();
             e.printStackTrace();
+            fail();
+        }
+    }
+
+    /**
+     * append content to file
+     */
+    @Test
+    public void appendFileToHDFS() {
+        System.out.println();
+        Path f = new Path("/file02");
+        try {
+            boolean exist = hdfs.exists(f);
+            if (!exist) {
+                boolean isCreated = hdfs.createNewFile(f);
+                if (isCreated) {
+                    System.out.println("Create success!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+
+        try (
+                FSDataOutputStream fs = hdfs.append(f);
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fs, "utf-8"));
+        ) {
+            for (int i = 0; i < 100; i++) {
+                out.write(Instant.now() + ": Hello, HDFS!");
+                out.newLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
         }
     }
 
