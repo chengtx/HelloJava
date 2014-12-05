@@ -6,11 +6,15 @@ package me.chengtx.java8.singleton;
  */
 public class SingletonInnerClass {
 
-    private static class InnerHolder{
+    private static class InnerHolder {
         private static String message = "Hello Java";
     }
 
-    public static String getInstance(){
+    public static String getInstance() {
         return InnerHolder.message;
     }
+
+    private SingletonInnerClass() {
+    }
+
 }
