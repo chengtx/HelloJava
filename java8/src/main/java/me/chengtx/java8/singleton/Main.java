@@ -13,7 +13,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Util.INSTANCE.sayHello();
+        System.out.println(SingletonInnerClass.getInstance());
+        SingletonEnum.INSTANCE.sayHello();
 	}
 
 }
