@@ -29,9 +29,11 @@ public class HDFSTest {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         System.setProperty("HADOOP_USER_NAME", "chengtx");
+        System.setProperty("hadoop.home.dir", "C:\\chengtx\\java\\hadoop\\hadoop-2.6.0");
+
         Configuration conf = new Configuration();
         conf.set("fs.defaultFS", NAME_NODE);
-        conf.set("hadoop.home.dir", "/user/chengtx");
+
         try {
             hdfs = new DistributedFileSystem();
             Instant start = Instant.now();
@@ -99,12 +101,14 @@ public class HDFSTest {
             System.out.println("Whether exist of this file:" + exist);
 
             // delete /usr/root
+            /**
             if (exist) {
                 boolean isDeleted = hdfs.delete(f, false);
                 if (isDeleted) {
                     System.out.println("Delete success!");
                 }
             }
+             */
 
             // create /usr/root
             if (!exist) {
