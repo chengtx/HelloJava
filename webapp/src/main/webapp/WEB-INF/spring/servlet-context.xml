@@ -11,6 +11,7 @@
         beans -->
     <context:annotation-config/>
     <context:component-scan base-package="me.chengtx.webapp.rest"/>
+    <context:component-scan base-package="me.chengtx.webapp.service"/>
     <context:component-scan base-package="me.chengtx.webapp.jpa"/>
 
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
