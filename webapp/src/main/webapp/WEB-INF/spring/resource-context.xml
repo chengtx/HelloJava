@@ -12,5 +12,4 @@
     <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/"/>
     <mvc:resources mapping="/images/**" location="/WEB-INF/image/"/>
     <mvc:resources mapping="/javascript/**" location="/WEB-INF/javascript/"/>
-
 </beans>
