@@ -18,7 +18,7 @@ public class Stock {
     public static Stock parseStock(String item){
         Stock s = new Stock();
         String[] items = item.split(",");
-        System.out.println(item);
+//        System.out.println(item);
 //        s.setId(items[0]);
         s.setName(items[0]);
         s.setCurrent(Float.parseFloat(items[3]));

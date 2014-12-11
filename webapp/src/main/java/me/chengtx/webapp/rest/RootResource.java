@@ -18,7 +18,7 @@ public class RootResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getString() {
-        return "Hello, CloudFoundry V2!";
+        return "Hello, CloudFoundry v2!";
     }
 
     @GET
