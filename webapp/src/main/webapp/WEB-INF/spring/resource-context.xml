@@ -9,6 +9,7 @@
     up static resources in the ${webappRoot}/WEB-INF/** directory -->
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
     <mvc:resources mapping="/html/**" location="/WEB-INF/html/"/>
+    <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/"/>
     <mvc:resources mapping="/images/**" location="/WEB-INF/image/"/>
     <mvc:resources mapping="/javascript/**" location="/WEB-INF/javascript/"/>
 
