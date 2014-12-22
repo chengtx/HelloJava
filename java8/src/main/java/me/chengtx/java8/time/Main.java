@@ -2,6 +2,7 @@ package me.chengtx.java8.time;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Calendar;
 
 /**
  * @author <a href="mailto:chengtingxian@gmail.com">Tingxian Cheng</a>
@@ -17,5 +18,11 @@ public class Main {
 
         Duration dur = Duration.between(start, end);
         System.out.println(dur);
+
+        System.out.println("==============================");
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MINUTE, -60);
+        System.out.println(cal.getTime().getTime());
     }
 }
