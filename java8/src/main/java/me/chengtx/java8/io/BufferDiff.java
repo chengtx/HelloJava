@@ -3,14 +3,10 @@
  */
 package me.chengtx.java8.io;
 
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Date;
-
 import com.google.common.io.CountingOutputStream;
+
+import java.io.*;
+import java.util.Date;
 
 public class BufferDiff {
 	public static void main(String args[]) throws IOException {
@@ -21,7 +17,11 @@ public class BufferDiff {
 		
 		FileOutputStream unbufStream2;
 
-		unbufStream = new FileOutputStream("test.one");
+		unbufStream = new FileOutputStream("test.one"){
+            {
+                System.out.println("Anonymous inner class. This is static initialize method");
+            }
+        };
 		bufStream = new BufferedOutputStream(new FileOutputStream("test.two"));
 		countStream = new CountingOutputStream(
 				new FileOutputStream("test.three"));
