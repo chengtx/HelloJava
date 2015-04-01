@@ -5,10 +5,12 @@ import me.chengtx.webapp.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +51,11 @@ public class StockResource {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Stock getStock(@PathParam("id") String id) {
+    public Stock getStock(@PathParam("id") String id, @Context HttpServletResponse response) {
         Stock stock = stockService.getStock(id);
+        response.setHeader("Access-Control-Allow-Origin","*");
+        response.setHeader("Access-Control-Allow-Methods","GET");
+        response.setHeader("Access-Control-Max-Age","60");
         return stock;
     }
 }
