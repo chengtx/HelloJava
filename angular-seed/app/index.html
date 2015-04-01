@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="My AngularJS App">
+    <title>My AngularJS App</title>
+</head>
+<body ng-app="myApp" class="container-fluid">
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<header>
+    <p>header</p>
+
+    <div class="logo"></div>
+</header>
+<div id="center-block">
+    <div class="row">
+        <div class="col-md-1">col-md-1</div>
+        <div class="col-md-10">
+            <p>content</p>
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="#/view1">view1</a></li>
+                <li role="presentation"><a href="#/view2">view2</a></li>
+                <li role="presentation"><a href="#/view3">view3</a></li>
+            </ul>
+            <div ng-view></div>
+            <div>
+                Angular seed app: v<span app-version></span>
+            </div>
+        </div>
+        <div class="col-md-1">col-md-1</div>
+    </div>
+</div>
+<footer>
+    <p>footer</p>
+</footer>
+
+<!--angularjs-->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+<!--bootstrap-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!--self-->
+<script src="components/js/app.js"></script>
+<script src="view1/view1.js"></script>
+<script src="view2/view2.js"></script>
+<script src="view3/view3.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+
+
+</body>
+</html>

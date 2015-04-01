@@ -1,0 +1,30 @@
+<div>
+    <p>Welcome {{name}} to {{company}}!</p>
+
+    <p>
+        Showing of 'interpolate' filter: {{ 'Current version is v%VERSION%.' | interpolate }}
+    </p>
+
+    <table class="table table-bordered table-condensed">
+        <thead>
+        <th>ID</th>
+        <th>Current</th>
+        <th>High</th>
+        <th>Low</th>
+        <th>Open</th>
+        <th>Close</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="s in stocks | orderBy:'id' track by $index ">
+            <td>{{s.id}}</td>
+            <td>{{s.current}}</td>
+            <td>{{s.highest}}</td>
+            <td>{{s.lowest}}</td>
+            <td>{{s.open_today}}</td>
+            <td>{{s.close_yest}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
