@@ -1,5 +1,7 @@
 package me.chengtx.webapp.model;
 
+import java.text.DecimalFormat;
+
 /**
  * @author <a href="mailto:chengtingxian@gmail.com">Tingxian Cheng</a>
  * @version 12/10/2014
@@ -13,9 +15,10 @@ public class Stock {
     private float lowest;
     private float open_today;
     private float close_yest;
+    private float pct;
 
 
-    public static Stock parseStock(String item){
+    public static Stock parseStock(String item) {
         Stock s = new Stock();
         String[] items = item.split(",");
 //        System.out.println(item);
@@ -83,5 +86,15 @@ public class Stock {
 
     public void setLowest(float lowest) {
         this.lowest = lowest;
+    }
+
+    public float getPct() {
+        final String pattern = "#.##";
+        final DecimalFormat myFormatter = new DecimalFormat(pattern);
+        return Float.valueOf(myFormatter.format(pct));
+    }
+
+    public void setPct(float pct) {
+        this.pct = pct;
     }
 }

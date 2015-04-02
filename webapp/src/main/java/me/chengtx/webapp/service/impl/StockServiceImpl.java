@@ -35,6 +35,8 @@ public class StockServiceImpl implements StockService {
             while ((line = rd.readLine()) != null) {
                 String item = line.substring(line.indexOf("\"", 0) + 1, line.length() - 2);
                 Stock s = Stock.parseStock(item);
+                float pct = s.getCurrent() / s.getClose_yest() * 100 - 100;
+                s.setPct(pct);
                 s.setId(id);
                 return s;
             }
