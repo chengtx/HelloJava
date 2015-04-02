@@ -8,6 +8,7 @@
     <table class="table table-bordered table-condensed">
         <thead>
         <th>ID</th>
+        <th>Pct</th>
         <th>Current</th>
         <th>High</th>
         <th>Low</th>
@@ -15,8 +16,9 @@
         <th>Close</th>
         </thead>
         <tbody>
-        <tr ng-repeat="s in stocks | orderBy:'id' track by $index ">
+        <tr ng-repeat="s in stocks | orderBy:'-pct' track by $index ">
             <td>{{s.id}}</td>
+            <td>{{s.pct}}</td>
             <td>{{s.current}}</td>
             <td>{{s.highest}}</td>
             <td>{{s.lowest}}</td>
