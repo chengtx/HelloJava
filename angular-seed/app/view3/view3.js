@@ -17,8 +17,8 @@ angular.module('myApp.view3', ['ngRoute'])
         //$scope.stocks = stocks;
 
         var url = 'http://webapp.perfsh6.example.com/rest/stocks/';
-        var codes = ['sh600675', 'sh600489', 'sh600737', 'sh600884', 'sh601919',
-            'sz002063'];
+        var codes = ['sh600489', 'sh600737',  'sh601919', 'sh600595',
+            'sh601168','sh601600','sh600675','sh601006'];
         var data = {
             id: codes
         };
