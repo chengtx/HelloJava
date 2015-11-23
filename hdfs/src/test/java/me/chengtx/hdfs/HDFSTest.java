@@ -23,12 +23,12 @@ import static org.junit.Assert.fail;
  */
 public class HDFSTest {
 
-    private static final String NAME_NODE = "hdfs://10.32.127.133:8020";
+    private static final String NAME_NODE = "hdfs://10.62.89.112:8020";
     private static DistributedFileSystem hdfs;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        System.setProperty("HADOOP_USER_NAME", "root");
+        System.setProperty("HADOOP_USER_NAME", "gpadmin");
         System.setProperty("hadoop.home.dir", "C:\\chengtx\\java\\hadoop\\hadoop-2.7.1");
 
         Configuration conf = new Configuration();

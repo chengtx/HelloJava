@@ -28,6 +28,7 @@ public class StockServiceImpl implements StockService {
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(url);
         try {
+
             HttpResponse response = client.execute(request);
             BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), CS));
             StringBuffer result = new StringBuffer();
