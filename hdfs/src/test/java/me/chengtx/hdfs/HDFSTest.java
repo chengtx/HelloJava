@@ -23,13 +23,13 @@ import static org.junit.Assert.fail;
  */
 public class HDFSTest {
 
-    private static final String NAME_NODE = "hdfs://10.32.127.132:8020";
+    private static final String NAME_NODE = "hdfs://10.32.127.133:8020";
     private static DistributedFileSystem hdfs;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        System.setProperty("HADOOP_USER_NAME", "chengtx");
-        System.setProperty("hadoop.home.dir", "C:\\chengtx\\java\\hadoop\\hadoop-2.6.0");
+        System.setProperty("HADOOP_USER_NAME", "root");
+        System.setProperty("hadoop.home.dir", "C:\\chengtx\\java\\hadoop\\hadoop-2.7.1");
 
         Configuration conf = new Configuration();
         conf.set("fs.defaultFS", NAME_NODE);
@@ -54,11 +54,6 @@ public class HDFSTest {
 
     @After
     public void tearDown() throws Exception {
-    }
-
-    @Test
-    public void test() {
-        // fail("Not yet implemented");
     }
 
     /**
@@ -94,21 +89,20 @@ public class HDFSTest {
         try {
             Path homePath = hdfs.getHomeDirectory();
             System.out.println("main path:" + homePath.toString());
-            assertEquals(NAME_NODE + "/user/chengtx", homePath.toString());
+            assertEquals(NAME_NODE + "/user/root", homePath.toString());
 
             Path f = new Path("/user/chengtx");
             boolean exist = hdfs.exists(f);
             System.out.println("Whether exist of this file:" + exist);
 
             // delete /usr/root
-            /**
             if (exist) {
-                boolean isDeleted = hdfs.delete(f, false);
+                boolean isDeleted = hdfs.delete(f, true);
                 if (isDeleted) {
                     System.out.println("Delete success!");
                 }
             }
-             */
+
 
             // create /usr/root
             if (!exist) {
@@ -134,7 +128,18 @@ public class HDFSTest {
                 Writer out = new OutputStreamWriter(os, "utf-8")
         ) {
             System.out.println("Start to create and write: " + new Path("/file03").getName() + " to hdfs");
-            out.write("Hello, HDFS!");
+            out.write("jvm"+"\n");
+            out.write("jvm"+"\n");
+            out.write("jvm"+"\n");
+            out.write("jvm"+"\n");
+            out.write("jvm"+"\n");
+            out.write("java"+"\n");
+            out.write("java"+"\n");
+            out.write("java"+"\n");
+            out.write("gc"+"\n");
+            out.write("gc"+"\n");
+            out.write("gc"+"\n");
+            out.write("gc"+"\n");
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -200,7 +205,7 @@ public class HDFSTest {
     public void readFileFromHDFS() {
         System.out.println();
         try (
-                FSDataInputStream dis = hdfs.open(new Path("/file02"));
+                FSDataInputStream dis = hdfs.open(new Path("/file03"));
                 InputStreamReader isr = new InputStreamReader(dis, "utf-8");
                 BufferedReader br = new BufferedReader(isr)
         ) {
@@ -238,7 +243,7 @@ public class HDFSTest {
                 FSDataOutputStream fs = hdfs.append(f);
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fs, "utf-8"));
         ) {
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 10; i++) {
                 out.write(Instant.now() + ": Hello, HDFS!");
                 out.newLine();
             }

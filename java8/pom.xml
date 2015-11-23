@@ -122,6 +122,12 @@
             <version>2.1.0</version>
         </dependency>
 
+        <!-- for RabbitMQ -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>3.5.4</version>
+        </dependency>
 
     </dependencies>
 

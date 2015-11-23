@@ -24,8 +24,8 @@ import java.util.Map;
 public class Client {
 
     Configuration conf = new YarnConfiguration();
-    private static final String NAME_NODE = "hdfs://10.32.127.132:8020";
-    private static final String RESOURCE_MANAGER = "10.32.127.132:8032";
+    private static final String NAME_NODE = "hdfs://10.32.127.133:8020";
+    private static final String RESOURCE_MANAGER = "10.32.127.133:8032";
 
     public void run(String[] args) throws Exception {
 
@@ -34,7 +34,7 @@ public class Client {
         final int n = 2;
         final Path jarPath = new Path("hdfs://10.32.127.132:8020/user/chengtx/simple-yarn-app-1.1.0.jar");
 
-        // Create yarnClient
+//        Create yarnClient
 //        YarnConfiguration conf = new YarnConfiguration();
         conf.set("fs.defaultFS", NAME_NODE);
         conf.set("yarn.resourcemanager.address", RESOURCE_MANAGER);
@@ -53,7 +53,7 @@ public class Client {
                 Collections.singletonList(
                         "$JAVA_HOME/bin/java" +
                                 " -Xmx256M" +
-                                " com.hortonworks.simpleyarnapp.ApplicationMaster" +
+                                " com.hortonworks.simpleyarnapp.ApplicationMasterAsync" +
                                 " " + command +
                                 " " + String.valueOf(n) +
                                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
