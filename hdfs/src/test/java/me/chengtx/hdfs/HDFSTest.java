@@ -23,7 +23,7 @@ import static org.junit.Assert.fail;
  */
 public class HDFSTest {
 
-    private static final String NAME_NODE = "hdfs://10.62.89.112:8020";
+    private static final String NAME_NODE = "hdfs://10.62.89.119:8020";
     private static DistributedFileSystem hdfs;
 
     @BeforeClass
